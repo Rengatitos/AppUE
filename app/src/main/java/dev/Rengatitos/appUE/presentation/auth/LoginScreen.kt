@@ -8,7 +8,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,9 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -46,7 +46,9 @@ fun LoginScreen() {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            /*TODO*/
+            if(email.isNotEmpty() && password.isNotEmpty()) {
+                navController.navigate("Home")
+            }
         },modifier = Modifier.fillMaxWidth()
             ) {
             Text("Iniciar Sesión")
